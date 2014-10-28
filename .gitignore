@@ -3,3 +3,5 @@ venv
 *~
 rk.json
 ut4.json
+static/gen/
+static/.webassets-cache/

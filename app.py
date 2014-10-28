@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, redirect, request, url_for, render_template, session
+from flask.ext.assets import Environment, Bundle
 from urllib import urlencode
 import requests
 from werkzeug.contrib.cache import SimpleCache
@@ -10,6 +11,7 @@ import os
 
 
 app = Flask(__name__)
+assets = Environment(app)
 app.debug = True
 app.secret_key = os.getenv('SECRET_KEY', 'development')
 cache = SimpleCache(default_timeout=60*60)
@@ -23,6 +25,18 @@ UT_CLIENT_ID = os.environ.get('UT_CLIENT_ID')
 UT_CLIENT_SECRET = os.environ.get('UT_CLIENT_SECRET')
 UT_REDIRECT_URI = 'http://localhost:5000/utloggedin'
 UT_BASE_URL = 'https://api.untappd.com'
+
+js_libs = Bundle(
+    'jquery.min.js',
+    'underscore-min.js',
+    'moment.min.js',
+    'moment-range.min.js',
+    'd3.min.js',
+    'nv.d3.min.js',
+    filters='jsmin',
+    output='gen/libs.js'
+)
+assets.register('js_libs', js_libs)
 
 
 @app.route('/utauth')

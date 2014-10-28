@@ -43,12 +43,11 @@
         <svg id="chart"></svg>
 
         {% include("js_templates.html") %}
-        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/moment-range/1.0.5/moment-range.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
-        
+
+        {% assets "js_libs" %}
+          <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+   
         <script src="{{ url_for('static', filename='nv.d3.min.js') }}"></script>
         <script src="{{ url_for('static', filename='chart.js') }}"></script>
         <script src="{{ url_for('static', filename='makeDict.js') }}"></script>
