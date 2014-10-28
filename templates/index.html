@@ -48,10 +48,10 @@
           <script type="text/javascript" src="{{ ASSET_URL }}"></script>
         {% endassets %}
    
-        <script src="{{ url_for('static', filename='nv.d3.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='chart.js') }}"></script>
-        <script src="{{ url_for('static', filename='makeDict.js') }}"></script>
-        <script src="{{ url_for('static', filename='list.js') }}"></script>
+
+        <script src="{{ url_for('static', filename='js/src/chart.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/src/makeDict.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/src/list.js') }}"></script>
 
         {% if beers and runs %}
             <script type="text/javascript">
