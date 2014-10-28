@@ -50,8 +50,7 @@ var BK = this.BK || {};
 
     function sum(arr) {
         return _.reduce(arr, function (total, val) {
-            total += val;
-            return total;
+            return total + val;
         }, 0);
     }
 
