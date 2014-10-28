@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+
+        <link 
+        rel="stylesheet" 
+        type="text/css" 
+        media="all" 
+        href="{{ url_for('static', filename='css/normalize.min.css') }}" 
+        />
+        <link 
+        rel="stylesheet" 
+        type="text/css" 
+        media="all" 
+        href="{{ url_for('static', filename='css/style.css') }}" 
+        />
+        <link 
+        rel="stylesheet" 
+        type="text/css" 
+        media="all" 
+        href="{{ url_for('static', filename='css/nv.d3.css') }}" 
+        />
+
+        <style type="text/css">
+         #chart svg {
+             height: 400px;             
+         }
+        </style>
+    </head>
+    <body>
+        <h1>BeerKeeper</h1>
+        <table class="beer-table"></table>
+        <div id="chart">
+          <svg></svg>
+        </div>
+
+        {% include("js_templates.html") %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment-range/1.0.5/moment-range.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+        
+        <script src="{{ url_for('static', filename='nv.d3.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='chart.js') }}"></script>
+        <script src="{{ url_for('static', filename='makeDict.js') }}"></script>
+        <script src="{{ url_for('static', filename='list.js') }}"></script>
+
+        {% if beers and runs %}
+            <script type="text/javascript">
+             (function () {
+                 var checkins  = {{beers | safe}};
+                 var runs = {{runs | safe}};
+                 var dict = BK.makeDict(checkins, runs);
+                 BK.printList(dict, $('.beer-table'));
+                 BK.printGraph(dict);
+             }());
+            </script>
+        {% else %}
+            <p>You have to have an account on both these services and auth this page to use your data.
+                <ul>
+                    {% if not beers %}
+                        <li><a href="/utauth">Authorize with Untappd</a></li>
+                    {% endif %}
+                    {% if not runs %}
+                        <li> <a href="/runkeeperauth">Authorize with RunKeeper</a></li>
+                    {% endif %}
+        {% endif %}
+                </ul>
+    </body>
+</html>

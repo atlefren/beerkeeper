@@ -1,0 +1,18 @@
+table.beer-table {
+    width: 100%;
+}
+
+table.beer-table td.date, td.beers {
+    width: 20%;
+}
+
+table.beer-table td {
+    padding: 20px;
+}
+
+table.beer-table tr:nth-child(odd) {background: #CCC}
+table.beer-table tr:nth-child(even) {background: #DDD}
+
+table.beer-table .large {
+    font-size: 18pt;
+}
