@@ -27,12 +27,12 @@ UT_REDIRECT_URI = 'http://localhost:5000/utloggedin'
 UT_BASE_URL = 'https://api.untappd.com'
 
 js_libs = Bundle(
-    'jquery.min.js',
-    'underscore-min.js',
-    'moment.min.js',
-    'moment-range.min.js',
-    'd3.min.js',
-    'nv.d3.min.js',
+    'js/lib/jquery.min.js',
+    'js/lib/underscore-min.js',
+    'js/lib/moment.min.js',
+    'js/lib/moment-range.min.js',
+    'js/lib/d3.min.js',
+    'js/lib/nv.d3.min.js',
     filters='jsmin',
     output='gen/libs.js'
 )
