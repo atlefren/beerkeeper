@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title></title>
+        <title>BeerKeeper</title>
 
         <link 
         rel="stylesheet" 
@@ -25,17 +25,22 @@
         />
 
         <style type="text/css">
-         #chart svg {
-             height: 400px;             
+         #chart {
+             height: 400px;
          }
         </style>
     </head>
     <body>
         <h1>BeerKeeper</h1>
+        <p>
+          Using Untappd and Runkeeper to show you how much you drink compared
+          to how much you work out. Try to keep a reasonable BPK (beers pr
+          kilometer) rate in order to stay alive to drink more beers!
+        </p>
+        <h2>Monthly breakdown</h2>
         <table class="beer-table"></table>
-        <div id="chart">
-          <svg></svg>
-        </div>
+        <h2>Graphed stats</h2>
+        <svg id="chart"></svg>
 
         {% include("js_templates.html") %}
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
@@ -56,7 +61,7 @@
                  var runs = {{runs | safe}};
                  var dict = BK.makeDict(checkins, runs);
                  BK.printList(dict, $('.beer-table'));
-                 BK.printGraph(dict);
+                 BK.printGraph(dict, 'chart');
              }());
             </script>
         {% else %}
